@@ -39,6 +39,7 @@
  
  group :development do
    gem 'listen', '~> 3.0.5'
+	 gem 'pry-rails'
  end
  
 group :development, :test do
@@ -47,4 +48,6 @@ group :development, :test do
  end
 
 gem 'bootstrap-sass'
+
+
 
