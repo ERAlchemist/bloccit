@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+    @posts.each_with_index do |post, index|
+      post.title = "SPAM" if index % 5 == 0
+    end
+  
+
   end
 
   def show
@@ -10,5 +15,6 @@ class PostsController < ApplicationController
   end
 
   def edit
+    
   end
 end
