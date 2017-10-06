@@ -20,10 +20,19 @@ require 'random_data'
      body: RandomData.random_paragraph
    )
  end
+
+100.times do
+	Question.create!(
+		title: RandomData.random_sentence,
+		body:  RandomData.random_paragraph,
+		resolved: false
+	)
+end
  
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
+	puts "#{Question.count} questions created"
 
  unique_post = Post.find_or_create_by!(title: "The Sky", body: "Why is the sky blue?")
  Comment.find_or_create_by!(post: unique_post, body: "The sky is an ocean.")
