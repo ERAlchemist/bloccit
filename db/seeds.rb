@@ -3,7 +3,6 @@ require 'random_data'
 # Create Users
  5.times do
    User.create!(
- # #3
    name:     RandomData.random_name,
    email:    RandomData.random_email,
    password: RandomData.random_sentence
@@ -18,23 +17,23 @@ require 'random_data'
   )
 end
 topics = Topic.all
- # Create Posts
+
  50.times do
 
    Post.create!(
 		user:  users.sample,
     topic:  topics.sample,
-     title:  RandomData.random_sentence,
-     body:   RandomData.random_paragraph
+    title:  RandomData.random_sentence,
+    body:   RandomData.random_paragraph
    )
  end
  posts = Post.all
  
  # Create Comments
- # #3
+
  100.times do
    Comment.create!(
- # #4
+
      post: posts.sample,
      body: RandomData.random_paragraph
    )
@@ -64,11 +63,11 @@ end
   )
  
  puts "Seed finished"
-  puts "#{User.count} users created"
+ puts "#{User.count} users created"
  puts "#{Topic.count} topics created"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
-	puts "#{Question.count} questions created"
+ puts "#{Question.count} questions created"
 
  unique_post = Post.find_or_create_by!(title: "The Sky", body: "Why is the sky blue?")
  Comment.find_or_create_by!(post: unique_post, body: "The sky is an ocean.")

@@ -9,17 +9,16 @@ Rails.application.routes.draw do
   #get 'questions/edit'
 
   #resources :advertisements
-
+	#resources :questions
 
   resources :topics do
-    
- 	resources :posts, except: [:index]
-      end
+ 		resources :posts, except: [:index]
+  end
 	resources :users, only: [:new, :create]
 	
 	resources :sessions, only: [:new, :create, :destroy]
 	post 'users/confirm' => 'users#confirm'
-	#resources :questions
+	
 
   get 'about' => 'welcome#about'
 

@@ -3,7 +3,7 @@ include RandomData
 
 RSpec.describe QuestionsController, type: :controller do
 
-let (:my_question) {Question.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)}
+	let (:my_question) {Question.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)}
 
   describe "GET #index" do
     it "returns http success" do
@@ -95,7 +95,7 @@ let (:my_question) {Question.create!(title: RandomData.random_sentence, body: Ra
        expect(question_instance.title).to eq my_question.title
        expect(question_instance.body).to eq my_question.body
      end
-   end
+  end
 
 	describe "QUESTION create" do
 		it "increases the number of Question by 1" do
@@ -108,21 +108,21 @@ let (:my_question) {Question.create!(title: RandomData.random_sentence, body: Ra
 		end
 
 		it "redirects to the new post" do
-		    post :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false } }
-		    expect(response).to redirect_to Question.last
-		 end
+		  post :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false } }
+		  expect(response).to redirect_to Question.last
 		end
+	end
 
 	describe "DELETE destroy" do
-     it "deletes the question" do
-       delete :destroy, params: { id: my_question.id }
-       count = Question.where({id: my_question.id}).size
-       expect(count).to eq 0
-     end
-     it "redirects to questions index" do
-       delete :destroy, params: { id: my_question.id }
-       expect(response).to redirect_to questions_path
-     end
-   end
+    it "deletes the question" do
+      delete :destroy, params: { id: my_question.id }
+      count = Question.where({id: my_question.id}).size
+      expect(count).to eq 0
+    end
+    it "redirects to questions index" do
+     	delete :destroy, params: { id: my_question.id }
+      expect(response).to redirect_to questions_path
+    end
+  end
 
 end
