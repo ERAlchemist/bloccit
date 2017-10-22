@@ -7,7 +7,9 @@ class Post < ApplicationRecord
 
 	default_scope { order('rank DESC') }
 	scope :ordered_by_title, -> { order('title DESC') }
-  scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
+	scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
+	
+	after_create :create_vote
 
 	validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
@@ -33,5 +35,10 @@ class Post < ApplicationRecord
 		update_attribute(:rank, new_rank)
 	end
 
+private
+
+	def create_vote
+		user.votes.create(value: 1, post: self)
+	end
 
 end
