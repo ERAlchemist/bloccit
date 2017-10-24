@@ -18,7 +18,7 @@ class Post < ApplicationRecord
 
 
 	def up_votes
-			votes.where(value: 1).count
+		votes.where(value: 1).count
 	end
 		
 	def down_votes
@@ -35,10 +35,18 @@ class Post < ApplicationRecord
 		update_attribute(:rank, new_rank)
 	end
 
-private
+	after_create :create_favorite
+
+	def create_favorite
+		Favorite.create(post: self, user: self.user)
+		FavoriteMailer.new_post(self).deliver_now
+	end
+
+	private
 
 	def create_vote
 		user.votes.create(value: 1, post: self)
 	end
 
+	
 end

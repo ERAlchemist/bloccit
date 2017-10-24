@@ -59,10 +59,11 @@ class TopicsController < ApplicationController
 		end
 	end
 
-	private
-   def topic_params
-     params.require(:topic).permit(:name, :description, :public)
-   end
+  private
+  
+  def topic_params
+    params.require(:topic).permit(:name, :description, :public)
+  end
 
   def authorize_user_to_edit
     unless current_user.admin? || current_user.moderator?
@@ -71,11 +72,11 @@ class TopicsController < ApplicationController
     end
   end
     
-    def authorize_user_to_create_or_delete
-        unless current_user.admin?
-            flash[:alert] = "You must be an admin to do that."
-            redirect_to topics_path
-        end
-    end
+  def authorize_user_to_create_or_delete
+      unless current_user.admin?
+          flash[:alert] = "You must be an admin to do that."
+          redirect_to topics_path
+      end
+  end
 
 end
