@@ -2,13 +2,13 @@ require 'rails_helper'
 include RandomData
 
 Rspec.describe AdvertisementsController, type: :controller do
-		let(:my_ad) {
-        Advertisement.create( params: {
-            id: 1,
-            title:  RandomData.random_sentence,
-            copy:   RandomData.random_paragraph,
-            price:  99
-       } )}
+    let(:my_ad) {
+    Advertisement.create( params: {
+        id: 1,
+        title:  RandomData.random_sentence,
+        copy:   RandomData.random_paragraph,
+        price:  99
+    } )}
    
 
     describe "GET #index" do
