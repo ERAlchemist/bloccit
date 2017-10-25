@@ -1,7 +1,4 @@
 class FavoritesController < ApplicationController
-
-end
-class FavoritesController < ApplicationController
  
    before_action :require_sign_in
  
